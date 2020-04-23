@@ -1,5 +1,5 @@
 var runningQuestion = 0;
-var count = 10;
+var count = 60;
 var questionTimer = 60; // 10s
 var gaugeWidth = 150; // 150px
 var gaugeUnit = gaugeWidth / questionTimer;

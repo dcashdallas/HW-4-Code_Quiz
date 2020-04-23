@@ -63,10 +63,11 @@ body{
 #choices{
     align-content: center;        
     width : 480px;
-    position: relative;
+    position: fixed;
     right : -10;
-    top : 0px;
-    padding : 5px
+    top : 250px;
+    padding : 5px;
+    
 }
 .choice{
     align-items: center;
@@ -133,7 +134,7 @@ body{
     width : 700px;
     border-radius: 5px;
     box-shadow: 0px 5px 15px 0px;
-    position: relative;
+    position: fixed;
     display: none;
 }
 #scoreContainer img{
