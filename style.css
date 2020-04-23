@@ -1,12 +1,12 @@
 body{
     font-size: 20px;
-    font-family: monospace;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 #container{
     margin : 25px auto;
     background-color: lightslategray;
-    height: 800px;
+    height: 600px;
     width : 700px;
     border-radius: 5px;
     box-shadow: 0px 5px 15px 0px;
@@ -48,25 +48,30 @@ body{
 #question{
     width:500px;
     height : 125px;
-    position: absolute;
-    right:0;
+    
+    text-align: center;
+    position: relative;
+    right:-100px;
     top:0;
 }
 #question p{
-    margin : 0;
-    padding : 15px;
+    
+    
     font-size: 1.25em;
 }
 
 #choices{
+    align-content: center;        
     width : 480px;
-    position: absolute;
-    right : 0;
-    top : 125px;
-    padding : 10px
+    position: relative;
+    right : -10;
+    top : 0px;
+    padding : 5px
 }
 .choice{
-    display: inline-block;
+    align-items: center;
+    background-color: white;
+    display: unset-list;
     width : 135px;
     text-align: center;
     border : 1px solid grey;

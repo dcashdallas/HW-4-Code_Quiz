@@ -1,70 +1,152 @@
+var quiz = document.getElementById("quiz");
+var question = document.getElementById("question");
+var qImg = document.getElementById("qImg");
+var choiceA = document.getElementById("A");
+var choiceB = document.getElementById("B");
+var choiceC = document.getElementById("C");
+var counter = document.getElementById("counter");
+var timeGauge = document.getElementById("timeGauge");
+var progress = document.getElementById("progress");
+var scoreDiv = document.getElementById("scoreContainer");
 var start = document.getElementById("start");
 
-var quiz = document.getElementById("quiz");
-
-var question = document.getElementById("question");
-
-var counter = document.getElementById("counter");
-
-var timeGauge = document.getElementById("timeGauge");
-
-var choice1 = document.getElementById("1");
-var chocie2 = document.getElementById("2");
-var choice3 = document.getElementById("3");
-var choice4 = document.getElementById("4");
-
-var scoreContainer = document.getElementById("scoreContainer");
-
-var score = 0;
-
-var TIMER;
 
 var questions = [
     {
-        question: "What is the price of tea in China",
-        choice1: "$56",
-        choice2: "$1",
-        choice3: "$10",
-        choice4: "$5",
-        correct: "2"
+        question: "What does HTML stand for?",
+        imgSrc: "img/html.png",
+        choiceA: "Correct",
+        choiceB: "Wrong",
+        choiceC: "Wrong",
+        correct: "A"
+    }, {
+        question: "What does CSS stand for?",
+        imgSrc: "img/css.png",
+        choiceA: "Wrong",
+        choiceB: "Correct",
+        choiceC: "Wrong",
+        correct: "B"
+    }, {
+        question: "What does JS stand for?",
+        imgSrc: "img/js.png",
+        choiceA: "Wrong",
+        choiceB: "Wrong",
+        choiceC: "Correct",
+        correct: "C"
     }
-]
+];
+
+// create some variables
+
 var lastQuestion = questions.length - 1;
 var runningQuestion = 0;
+var count = 59;
+var questionTime = 59; // 10s
+var gaugeWidth = 150; // 150px
+var gaugeUnit = gaugeWidth / questionTime;
+var TIMER;
+var score = 0;
 
+// render a question
 function renderQuestion() {
-    var q = questions[runningQuestionIndex];
+    let q = questions[runningQuestion];
+
     question.innerHTML = "<p>" + q.question + "</p>";
-    choice1.innerHTML = q.choice1;
-    choice2.innerHTML = q.choice2;
-    choice3.innerHTML = q.choice3;
-    choice4.innerHTML = q.choice4;
+    // qImg.innerHTML = "<img src="+ q.imgSrc +">";
+    choiceA.innerHTML = q.choiceA;
+    choiceB.innerHTML = q.choiceB;
+    choiceC.innerHTML = q.choiceC;
 }
 
-function checkAnswer(answer) {
-    if (questions[runningQuestionIndex].correct === answer) {
-        score++;
-        answerIsCorrect();
+start.addEventListener("click", startQuiz);
+
+// start quiz
+function startQuiz() {
+    start.style.display = "none";
+    renderQuestion();
+    quiz.style.display = "block";
+    // renderProgress();
+    renderCounter();
+    TIMER = setInterval(renderCounter, 1000); // 1000ms = 1s
+}
+
+// render progress
+// function renderProgress() {
+//     for (let qIndex = 0; qIndex <= lastQuestion; qIndex++) {
+//         progress.innerHTML += "<div class='prog' id=" + qIndex + "></div>";
+//     }
+// }
+
+// counter render
+
+function renderCounter() {
+    if (count <= questionTime) {
+        counter.innerHTML = count;
+        timeGauge.style.width = count * gaugeUnit + "px";
+        count--
     } else {
+        count = 0;
+        // change progress color to red
         answerIsWrong();
+        if (runningQuestion < lastQuestion) {
+            runningQuestion++;
+            renderQuestion();
+        } else {
+            // end the quiz and show the score
+            clearInterval(TIMER);
+            scoreRender();
+        }
     }
-    if (runningQuestionIndex < lastQuestionIndex) {
-        runningQuestionIndex++;
-        questionRender();
+}
+
+// checkAnwer
+
+function checkAnswer(answer) {
+    // if (answer == questions[runningQuestion].correct) {
+    //     // answer is correct
+    //     score++;
+    //     // change progress color to green
+    //     answerIsCorrect();
+    // } else {
+    //     // answer is wrong
+    //     // change progress color to red
+    //     answerIsWrong();
+    // }
+    // count = 0;
+    if (runningQuestion < lastQuestion) {
+        runningQuestion++;
+        renderQuestion();
     } else {
+        // end the quiz and show the score
         clearInterval(TIMER);
         scoreRender();
     }
 }
 
-var start = document.getElementById("start");
+// answer is correct
+// function answerIsCorrect() {
+//     document.getElementById(runningQuestion).style.backgroundColor = "#0f0";
+// }
 
-start.addEventListener("click", startQuiz);
+// // answer is Wrong
+// function answerIsWrong() {
+//     document.getElementById(runningQuestion).style.backgroundColor = "#f00";
+// }
 
-function startQuiz() {
-    start.style.display = "none";
-    counterRender();
-    TIMER = setInterval(counterRender, 1000);
-    questionRender();
-    quiz.style.display = "block";
+// score render
+function scoreRender() {
+    scoreDiv.style.display = "block";
+
+    // calculate the amount of question percent answered by the user
+    var scorePerCent = Math.round(100 * score / questions.length);
+
+    // choose the image based on the scorePerCent
+    var img = (scorePerCent >= 80) ? "img/5.png" :
+        (scorePerCent >= 60) ? "img/4.png" :
+            (scorePerCent >= 40) ? "img/3.png" :
+                (scorePerCent >= 20) ? "img/2.png" :
+                    "img/1.png";
+
+    scoreDiv.innerHTML = "<img src=" + img + ">";
+    scoreDiv.innerHTML += "<p>" + scorePerCent + "%</p>";
 }
