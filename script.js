@@ -17,6 +17,8 @@ var scoreContainer = document.getElementById("scoreContainer");
 
 var score = 0;
 
+var TIMER;
+
 var questions = [
     {
         question: "What is the price of tea in China",
@@ -27,8 +29,8 @@ var questions = [
         correct: "2"
     }
 ]
-var lastQuestionIndex = questions.length - 1;
-var runningQuestionIndex = 0;
+var lastQuestion = questions.length - 1;
+var runningQuestion = 0;
 
 function renderQuestion() {
     var q = questions[runningQuestionIndex];
@@ -53,4 +55,16 @@ function checkAnswer(answer) {
         clearInterval(TIMER);
         scoreRender();
     }
+}
+
+var start = document.getElementById("start");
+
+start.addEventListener("click", startQuiz);
+
+function startQuiz() {
+    start.style.display = "none";
+    counterRender();
+    TIMER = setInterval(counterRender, 1000);
+    questionRender();
+    quiz.style.display = "block";
 }

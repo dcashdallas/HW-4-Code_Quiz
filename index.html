@@ -10,27 +10,30 @@
 </head>
 
 <body>
-    <h1>Welcome to Daniel's Allstar Coding Quiz</h1>
+    <div id="container">
+        <h1>Welcome to Daniel's Allstar Coding Quiz</h1>
 
-    <div id="start"> Start the MADNESS!!! </div>
-    <div id="quiz" style="display : none;">
-        <div id="question">
-            <p> Question </p>
+        <button id="start">Start the MADNESS!!!</button>
+
+        <div id="quiz" style="display : none;">
+            <div id="question">
+                <p> Question </p>
+            </div>
+            <div id="timer">
+                <div id="counter"> 59 </div>
+                <div id="btimeGauge"></div>
+                <div id="timeGauge"></div>
+            </div>
+            <div id="choices">
+                <div class="choice" id="1" onclick="checkAnswer('1')">1</div>
+                <div class="choice" id="2" onclick="checkAnswer('2')">2</div>
+                <div class="choice" id="3" onclick="checkAnswer('3')">3</div>
+                <div class="choice" id="4" onclick="checkAnswer('4')">4</div>
+            </div>
+
+
+
         </div>
-        <div id="timer">
-            <div id="counter"> 59 </div>
-            <div id="btimeGauge"></div>
-            <div id="timeGauge"></div>
-        </div>
-
-        <div class="choice" id="1" onclick="checkAnswer('1')">1</div>
-        <div class="choice" id="2" onclick="checkAnswer('2')">2</div>
-        <div class="choice" id="3" onclick="checkAnswer('3')">3</div>
-        <div class="choice" id="4" onclick="checkAnswer('4')">4</div>
-
-
-
-
     </div>
 
 
