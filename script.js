@@ -1,7 +1,7 @@
-var runningQuestion = 0;
+var currentQuestion = 0;
 var count = 60;
-var questionTimer = 60; // 10s
-var gaugeWidth = 150; // 150px
+var questionTimer = 60;
+var gaugeWidth = 150;
 var gaugeUnit = gaugeWidth / questionTimer;
 var timer = 0;
 var score = 0;
@@ -10,10 +10,12 @@ var question = document.getElementById("question");
 var choiceA = document.getElementById("A");
 var choiceB = document.getElementById("B");
 var choiceC = document.getElementById("C");
+var choiceD = document.getElementById("D");
 var counter = document.getElementById("counter");
 var scoreDiv = document.getElementById("scoreContainer");
 
 start.addEventListener("click", startQuiz);
+
 
 function startQuiz() {
     start.style.display = "none";
@@ -21,16 +23,17 @@ function startQuiz() {
     quiz.style.display = "block";
     renderCounter();
     timer = setInterval(renderCounter, 1000);
+    document.getElementById("welcome").hidden = true;
 }
 
 function checkAnswer(answer) {
-    if (answer == questions[runningQuestion].correct) {
+    if (answer == questions[currentQuestion].correct) {
         score += 10;
     } else {
         count -= 5
     }
-    if (runningQuestion < lastQuestion) {
-        runningQuestion++;
+    if (currentQuestion < lastQuestion) {
+        currentQuestion++;
         renderQuestion();
     } else {
         window.clearInterval(timer);
@@ -50,8 +53,8 @@ function renderCounter() {
 
 
         // answerIsWrong();
-        if (runningQuestion < lastQuestion) {
-            runningQuestion++;
+        if (currentQuestion < lastQuestion) {
+            currentQuestion++;
             renderQuestion();
         } else {
             // end the quiz and show the score
@@ -96,13 +99,14 @@ var lastQuestion = questions.length - 1;
 
 // render a question
 function renderQuestion() {
-    let q = questions[runningQuestion];
+    let q = questions[currentQuestion];
 
     question.innerHTML = "<p>" + q.question + "</p>";
     // qImg.innerHTML = "<img src="+ q.imgSrc +">";
     choiceA.innerHTML = q.choiceA;
     choiceB.innerHTML = q.choiceB;
     choiceC.innerHTML = q.choiceC;
+    choiceD.innerHTML = q.choiceD;
 }
 
 function scoreRender() {

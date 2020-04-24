@@ -28,31 +28,19 @@ body{
     color : black;
 }
 #start:hover{
-    border: 3px solid lightseagreen;
-    color : lightseagreen;
+    border: 3px solid red;
+    color : red;
 }
 
-#qImg{
-    width : 200px;
-    height : 200px;
-    position: absolute;
-    left : 0px;
-    top : 0px;
-}
-#qImg img{
-    width : 200px;
-    height : 200px;
-    border-top-left-radius: 5px;
-}
 
 #question{
     width:500px;
     height : 125px;
     
     text-align: center;
-    position: relative;
-    right:-100px;
-    top:0;
+    position: absolute;
+    right: 100px;
+    margin-top: 100px;
 }
 #question p{
     
@@ -79,6 +67,7 @@ body{
     border-radius: 5px;
     cursor: pointer;
     padding : 5px;
+    margin-left : 275px;
 }
 .choice:hover{
     border : 2px solid grey;
@@ -88,68 +77,56 @@ body{
 #timer{
     position: absolute;
     height : 100px;
-    width : 200px;
+    width : 100px;
     bottom : 0px;
-    text-align: center;
+    margin-left : 300px;
 }
 #counter{
     font-size: 3em;
 }
-#btimeGauge{
-    width : 150px;
-    height : 10px;
-    border-radius: 10px;
-    background-color: lightgray;
-    margin-left : 25px;
-}
+
 #timeGauge{
-    height : 10px;
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+    height : 20px;
+    width: 50px;
     border-radius: 10px;
     background-color: mediumseagreen;
     margin-top : -10px;
-    margin-left : 25px;
+    margin-left : 0px;
+    
 }
-#progress{
-    width : 500px;
-    position: absolute;
-    bottom : 0px;
-    right : 0px;
-    padding:5px;
-    text-align: right;
-}
-.prog{
-    width : 25px;
-    height : 25px;
-    border: 1px solid #000;
-    display: inline-block;
-    border-radius: 50%;
-    margin-left : 5px;
-    margin-right : 5px;
-}
+
 #scoreContainer{
-    margin : 20px auto;
-    background-color: white;
-    opacity: 0.8;
+    color: white;
+    margin : 0px auto;
+    background-color: black;
+    opacity: 1;
     height: 300px;
     width : 700px;
-    border-radius: 5px;
+    border-radius: 1px;
+    margin-bottom: 20px;
     box-shadow: 0px 5px 15px 0px;
     position: fixed;
     display: none;
 }
-#scoreContainer img{
+/* #scoreContainer img{
     position: absolute;
-    top:100px;
-    left:325px;
-}
+    top:50px;
+    left:50px;
+} */
+
 #scoreContainer p{
-    position: absolute;
+    color: white;
+    position: relative;
     display: block;
     width : 59px;
-    height :59px;
-    top:130px;
-    left:325px;
+    height: 59px;
+    top: 5px;
+    left: 325px;
     font-size: 1.5em;
     font-weight: bold;
     text-align: center;
+    z-index: 80;
 }

@@ -11,17 +11,16 @@
 
 <body>
     <div id="container">
-        <h1>Welcome to Daniel's Allstar Coding Quiz Extravaganza!!!!!!!</h1>
 
-        <button id="start">Start the MADNESS!!!</button>
+        <div id="welcome">
+            <h1>Welcome to Daniel's Allstar Coding Quiz Extravaganza!!!!!!!</h1>
+
+            <button id="start">Start the MADNESS!!!</button>
+        </div>
 
         <div id="quiz" style="display : none;">
             <div id="question">
                 <p> Question </p>
-            </div>
-            <div id="scoreContainer">
-                <h2>Your Score is:</h2>
-
             </div>
             <div id="timer">
                 <div id="counter"> 60 </div>
@@ -34,6 +33,10 @@
                 <div class="choice" id="C" onclick="checkAnswer('C')">C</div>
                 <div class="choice" id="D" onclick="checkAnswer('D')">D</div>
             </div>
+        </div>
+        <div id="scoreContainer">
+            <h2>Your Score is:</h2>
+
         </div>
     </div>
     </div>
