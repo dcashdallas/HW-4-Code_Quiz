@@ -13,8 +13,9 @@ var choiceC = document.getElementById("C");
 var choiceD = document.getElementById("D");
 var counter = document.getElementById("counter");
 var scoreDiv = document.getElementById("scoreContainer");
-var enterInitials = document.getElementById("initials-entry")
+var initialsDiv = document.getElementById("initials")
 var leaderboardDiv = document.getElementById("highscore-container")
+var userInitialsSpan = document.querySelector("form-control")
 
 start.addEventListener("click", startQuiz);
 
@@ -178,7 +179,6 @@ function scoreRender() {
     scoreDiv.innerHTML += "<p>" + "Enter your initials into the field above to be listed on the leaderboard!" + "</p>"
     count = 0;
     clearInterval(timer);
-    enterInitials.style.display = "block";
     console.log(score)
     localStorage.getItem(score)
     leaderboardRender();
@@ -190,7 +190,7 @@ function leaderboardRender() {
 }
 
 function saveHighScore() {
-    var initials = document.getElementById("initials");
+    var initials = document.getElementById("initials-entry");
     var newHighScore = {
         initials: initials.value,
         highScore: score
@@ -205,8 +205,26 @@ leaderboard.addEventListener("click", viewHighScores);
 // leaderboard.addEventListener("click", clearScores)
 
 function viewHighScores() {
+    var initials = localStorage.getItem("initials");
     leaderboardDiv.style.display = "block";
-    leaderboardDiv.innerHTML += "<p>" + score + "</p>"
-    clearInterval(viewHighScores);
-
+    leaderboardDiv.innerHTML += "<p>" + score + initials + "</p>"
+    userInitialsSpan.textContent = initials;
+    clearInterval(leaderboard);
 }
+
+submit.addEventListener("click", function (event) {
+    event.preventDefault();
+
+    var initials = document.querySelector("initials").value;
+    if (initials === "") {
+        displayMessage("error", "Initials cannot be blank");
+    } else {
+        displayMessage("success");
+
+        localStorage.setItem("initials", initials);
+        console.log(initials)
+        renderViewHighScores();
+
+    }
+
+})
