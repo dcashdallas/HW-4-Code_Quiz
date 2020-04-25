@@ -126,7 +126,7 @@ function scoreRender() {
 
     // scoreDiv.innerHTML = "<img src=" + img + ">";
     scoreDiv.innerHTML += "<p>" + "Score: " + score + "</p>";
-    scoreDiv.innerHTML += "<p>" + "Enter your Initials above to be listed on the leaderboard." + "</p>"
+    scoreDiv.innerHTML += "<p>" + "Enter your initials into the field above to be listed on the leaderboard!" + "</p>"
     count = 0;
     clearInterval(timer);
     enterInitials.style.display = "block";
