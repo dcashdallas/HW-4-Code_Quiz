@@ -13,6 +13,7 @@ var choiceC = document.getElementById("C");
 var choiceD = document.getElementById("D");
 var counter = document.getElementById("counter");
 var scoreDiv = document.getElementById("scoreContainer");
+var enterInitials = document.getElementById("initials")
 
 start.addEventListener("click", startQuiz);
 
@@ -27,8 +28,9 @@ function startQuiz() {
 }
 
 function checkAnswer(answer) {
-    if (answer == questions[currentQuestion].correct) {
+    if (answer === questions[currentQuestion].correct) {
         score += 10;
+
     } else {
         count -= 5
     }
@@ -99,7 +101,7 @@ var lastQuestion = questions.length - 1;
 
 // render a question
 function renderQuestion() {
-    let q = questions[currentQuestion];
+    var q = questions[currentQuestion];
 
     question.innerHTML = "<p>" + q.question + "</p>";
     // qImg.innerHTML = "<img src="+ q.imgSrc +">";
@@ -123,8 +125,12 @@ function scoreRender() {
     //                 "img/1.png";
 
     // scoreDiv.innerHTML = "<img src=" + img + ">";
-    scoreDiv.innerHTML += "<p>" + score + "</p>";
+    scoreDiv.innerHTML += "<p>" + "Score: " + score + "</p>";
+    scoreDiv.innerHTML += "<p>" + "Enter your Initials above to be listed on the leaderboard." + "</p>"
     count = 0;
-    clearInterval(timer)
+    clearInterval(timer);
+    enterInitials.style.display = "block";
 
 }
+
+
