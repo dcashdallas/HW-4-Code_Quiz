@@ -1,6 +1,6 @@
 var currentQuestion = 0;
-var count = 10;
-var questionTimer = 10;
+var count = 60;
+var questionTimer = 60;
 var gaugeWidth = 150;
 var gaugeUnit = gaugeWidth / questionTimer;
 var timer = 0;
@@ -25,6 +25,7 @@ function startQuiz() {
     renderCounter();
     timer = setInterval(renderCounter, 1000);
     document.getElementById("welcome").hidden = true;
+    // document.getElementById("highscore-container").hidden = true;
 
 }
 
@@ -68,27 +69,84 @@ function renderCounter() {
 
 var questions = [
     {
-        question: "What does HTML stand for?",
-        imgSrc: "img/html.png",
-        choiceA: "Correct",
-        choiceB: "Wrong",
-        choiceC: "Wrong",
+        question: "What is the best Coding Bootcamp EVER?",
+        choiceA: "SMU Coding Bootcamp",
+        choiceB: "CodingDojo",
+        choiceC: "Thinkful",
+        choiceD: "Bobo's Coding School",
         correct: "A"
     }, {
-        question: "What does CSS stand for?",
-        imgSrc: "img/css.png",
-        choiceA: "Wrong",
-        choiceB: "Correct",
-        choiceC: "Wrong",
-        correct: "B"
+        question: "Who is/are the greatest TA's to ever play tha game?",
+
+        choiceA: "Tyler",
+        choiceB: "Henry",
+        choiceC: "Whomever is grading this homework",
+        choiceD: "A, B, & C are all correct",
+        correct: "D"
     }, {
         question: "What does JS stand for?",
-        imgSrc: "img/js.png",
-        choiceA: "Wrong",
-        choiceB: "Wrong",
-        choiceC: "Correct",
+        choiceA: "Jolly Santa",
+        choiceB: "Jerk Sandwich",
+        choiceC: "JavaScript",
+        choiceD: "Joint Smoker",
         correct: "C"
-    }
+    }, {
+        question: "What does HTML stand for?",
+
+        choiceA: "Hercules, Tartarus, Medusa, Lachesis",
+        choiceB: "Henry Taught Me Lots",
+        choiceC: "How Tyler Makes (us) Learn",
+        choiceD: "Hypertext Markup Language",
+        correct: "D"
+    }, {
+        question: "What tag can be used to insert a line break or blank line in an HTML document?",
+
+        choiceA: "br",
+        choiceB: "body+",
+        choiceC: "head",
+        choiceD: "title",
+        correct: "A"
+    }, {
+        question: "What element is a container for all the head elements, and may include the document title, scripts, styles, meta information, and more?",
+
+        choiceA: "body",
+        choiceB: "title",
+        choiceC: "head",
+        choiceD: "br",
+        correct: "C"
+    }, {
+        question: "What tag is used to specify a section of text that provides an example of computer code?",
+
+        choiceA: "code",
+        choiceB: "caption",
+        choiceC: "!DOCTYPE",
+        choiceD: "embed",
+        correct: "A"
+    }, {
+        question: "What tag is used to define a list item (in a bulleted list)?",
+
+        choiceA: "s",
+        choiceB: "li",
+        choiceC: "u",
+        choiceD: "ul",
+        correct: "B"
+    }, {
+        question: "What tag is required in all HTML documents, and is used to define the title?",
+
+        choiceA: "body",
+        choiceB: "title",
+        choiceC: "head",
+        choiceD: "br",
+        correct: "B"
+    }, {
+        question: "What group of tags are used to define the text headers in the body of the HTML document?",
+
+        choiceA: "button",
+        choiceB: "h1 to h6",
+        choiceC: "footer",
+        choiceD: "td",
+        correct: "B"
+    },
 ];
 
 // create some variables
@@ -123,8 +181,12 @@ function scoreRender() {
     enterInitials.style.display = "block";
     console.log(score)
     localStorage.getItem(score)
+    leaderboardRender();
 
+}
 
+function leaderboardRender() {
+    document.getElementById("highscore-container").show;
 }
 
 function saveHighScore() {
@@ -140,9 +202,11 @@ function saveHighScore() {
 }
 
 leaderboard.addEventListener("click", viewHighScores);
+// leaderboard.addEventListener("click", clearScores)
 
 function viewHighScores() {
     leaderboardDiv.style.display = "block";
     leaderboardDiv.innerHTML += "<p>" + score + "</p>"
+    clearInterval(viewHighScores);
 
 }
