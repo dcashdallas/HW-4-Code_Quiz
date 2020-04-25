@@ -4,9 +4,6 @@ h1{
     font-family: sans-serif;
     color: rgb(15, 72, 179);
     margin: 15px auto;
-    
-
-
 }
 
 body{
@@ -43,8 +40,6 @@ body{
     border: 3px solid red;
     color : red;
 }
-
-
 #question{
     width:500px;
     height : 125px;
@@ -55,8 +50,6 @@ body{
     margin-top: 100px;
 }
 #question p{
-    
-    
     font-size: 1.25em;
 }
 
@@ -67,7 +60,6 @@ body{
     right : -10;
     top : 250px;
     padding : 5px;
-    
 }
 .choice{
     align-items: center;
@@ -117,7 +109,7 @@ body{
     margin : 0px auto;
     background-color: black;
     opacity: 1;
-    height: 500px;
+    height: 600px;
     width : 700px;
     border-radius: 1px;
     margin-bottom: 20px;
@@ -134,18 +126,14 @@ body{
 #scoreContainer p{
     color: white;
     position: relative;
-    
-    
     top: 20px;
     left: 0px;
     font-size: 36px;
     font-weight: bold;
     text-align: center;
-    
 }
 
 .initials {
-    
     color: red;
     margin-top: 300px;
     position: fixed;
@@ -153,6 +141,19 @@ body{
 }
 
 .form-group {
-margin-top: 100px;
-position: relative
+    margin-top: 100px;
+    position: relative;
+}
+
+#highscore-container {
+    color: white;
+    
+    margin : 25px auto;
+    background-color: black;
+    height: 75px;
+    width : 700px;
+    border-radius: 5px;
+    box-shadow: 0px 5px 15px 0px;
+    position: relative;
+    text-align: center;
 }

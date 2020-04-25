@@ -14,30 +14,9 @@ var choiceD = document.getElementById("D");
 var counter = document.getElementById("counter");
 var scoreDiv = document.getElementById("scoreContainer");
 var enterInitials = document.getElementById("initials-entry")
-
-var submitButton = document.querySelector("#submit");
-
-var initials = document.querySelector("#initials").value;
-
-// var highscoreButtonEl = document.getElementById("highscore-button");
-// var highscoreContainerEl = document.getElementById("highscore-container");
-
-submitButton.addEventListener("click", function (event) {
-    event.preventDefault();
-
-    var initial = document.querySelector("#initials").value;
-
-    localStorage.setItem("initials", initials);
-    saveHighScore();
-});
+var leaderboardDiv = document.getElementById("highscore-container")
 
 start.addEventListener("click", startQuiz);
-leaderboard.addEventListener("click", viewLeaderboard);
-
-function viewLeaderboard() {
-    localStorage.getItem("score")
-}
-// submitButton.addEventListener("click", saveHighScore);
 
 function startQuiz() {
     start.style.display = "none";
@@ -75,8 +54,6 @@ function renderCounter() {
         questionTimer <= 0;
         clearInterval(timer)
         scoreRender;
-
-
         // answerIsWrong();
         if (currentQuestion < lastQuestion) {
             currentQuestion++;
@@ -86,9 +63,6 @@ function renderCounter() {
             clearInterval(count);
             scoreRender();
         }
-
-
-
     }
 }
 
@@ -115,8 +89,6 @@ var questions = [
         choiceC: "Correct",
         correct: "C"
     }
-
-
 ];
 
 // create some variables
@@ -141,15 +113,7 @@ function renderQuestion() {
 function scoreRender() {
     scoreDiv.style.display = "block";
 
-    // calculate the amount of question percent answered by the user
-    // var scorePerCent = Math.round(100 * score / questions.length);
 
-    // choose the image based on the scorePerCent
-    // var img = (scorePerCent >= 80) ? "img/5.png" :
-    //     (scorePerCent >= 60) ? "img/4.png" :
-    //         (scorePerCent >= 40) ? "img/3.png" :
-    //             (scorePerCent >= 20) ? "img/2.png" :
-    //                 "img/1.png";
 
     // scoreDiv.innerHTML = "<img src=" + img + ">";
     scoreDiv.innerHTML += "<p>" + "Score: " + score + "</p>";
@@ -163,61 +127,22 @@ function scoreRender() {
 
 }
 
-
-// submitButton.addEventListener("click", saveHighScore);
-// function setScore() {
-//     localStorage.setItem("highscore", score);
-//     localStorage.setItem("highscoreName", document.getElementById('name').value);
-//     getScore();
-// }
-
-// function getScore() {
-//     var quizContent = `
-//     <h2>` + localStorage.getItem("highscoreName") + `'s highscore is:</h2>
-//     <h1>` + localStorage.getItem("highscore") + `</h1><br> 
-
-//     <button onclick="clearScore()">Clear score!</button><button onclick="resetGame()">Play Again!</button>
-
-//     `;
-
-//     document.getElementById("quizBody").innerHTML = quizContent;
-// }
-
 function saveHighScore() {
-    var initialsEl = document.getElementById("initials");
+    var initials = document.getElementById("initials");
     var newHighScore = {
         initials: initials.value,
         highScore: score
     };
     console.log(newHighScore);
-    highScores.push(newHighScore);
+    score.push(newHighScore);
     console.log(highScores);
     localStorage.setItem(score, JSON.stringify(highScores));
 }
 
+leaderboard.addEventListener("click", viewHighScores);
 
+function viewHighScores() {
+    leaderboardDiv.style.display = "block";
+    leaderboardDiv.innerHTML += "<p>" + score + "</p>"
 
-
-
-// highscoreButtonEl.addEventListener("click", function () {
-//     landingContainerEl.setAttribute("class", "container d-none");
-//     quizContainerEl.setAttribute("class", "container d-none");
-//     finalContainerEl.setAttribute("class", "container d-none");
-//     highscoreContainerEl.setAttribute("class", "container");
-//     let colEl = document.getElementById("highscore-table");
-//     for (i = 0; i < highScores.length; i++) {
-//         let rowEl = document.createElement("div");
-//         rowEl.setAttribute("class", "row mb-1");
-//         colEl.append(rowEl);
-
-//         let colEl2 = document.createElement("div");
-//         colEl2.setAttribute("class", "col-12 text-center");
-//         rowEl.append(colEl2);
-
-//         let parEl = document.createElement("div");
-//         parEl.innerHTML = "Initials: " + highScores[i].initials + "   Score: " + highScores[i].highScore;
-//         colEl2.append(parEl);
-//     }
-// });
-
-
+}
