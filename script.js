@@ -43,7 +43,12 @@ function checkAnswer(answer) {
     } else {
         window.clearInterval(timer);
         scoreRender();
+    } if (count <= 0) {
+        window.clearInterval(timer);
+        alert("Times Up!")
+        scoreRender();
     }
+
 }
 
 function renderCounter() {
@@ -190,7 +195,7 @@ function leaderboardRender() {
 }
 
 function saveHighScore() {
-    var initials = document.getElementById("initials-entry");
+    var initials = document.getElementById("initials");
     var newHighScore = {
         initials: initials.value,
         highScore: score
@@ -207,7 +212,7 @@ leaderboard.addEventListener("click", viewHighScores);
 function viewHighScores() {
     var initials = localStorage.getItem("initials");
     leaderboardDiv.style.display = "block";
-    leaderboardDiv.innerHTML += "<p>" + score + initials + "</p>"
+    leaderboardDiv.innerHTML += "<p>" + initials + " " + score + "</p>"
     userInitialsSpan.textContent = initials;
     clearInterval(leaderboard);
 }
