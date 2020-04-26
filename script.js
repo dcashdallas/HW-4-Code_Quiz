@@ -45,7 +45,7 @@ function checkAnswer(answer) {
         scoreRender();
     } if (count <= 0) {
         window.clearInterval(timer);
-        alert("Game Over! Let's see your Score!")
+        alert("Quiz Over! Let's see your Score!")
         scoreRender();
     }
 
@@ -195,26 +195,31 @@ function leaderboardRender() {
 }
 
 function saveHighScore() {
-    var initials = document.getElementById("initials");
-    var newHighScore = {
-        initials: initials.value,
-        highScore: score
-    };
+
     console.log(newHighScore);
-    score.push(newHighScore);
+
     console.log(highScores);
-    localStorage.setItem(score, JSON.stringify(highScores));
+
 }
 
 leaderboard.addEventListener("click", viewHighScores);
 // leaderboard.addEventListener("click", clearScores)
 
 function viewHighScores() {
-    var initials = localStorage.getItem("initials");
+    var initials = localStorage.getItem(".initials");
     leaderboardDiv.style.display = "block";
     leaderboardDiv.innerHTML += "<p>" + initials + " " + score + "</p>"
-    userInitialsSpan.textContent = initials;
+    // userInitialsSpan.textContent = initials;
     clearInterval(leaderboard);
+    score.push(newHighScore);
+    localStorage.setItem(score, JSON.stringify(newHighScores));
+    var newHighScore = {
+        initials: initials.value,
+        highScore: score
+    };
+    var initials = document.getElementById("initials");
+
+
 }
 
 // submit.addEventListener("click", function (event) {

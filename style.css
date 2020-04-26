@@ -156,7 +156,7 @@ body{
 
 #highscore-container {
     color: white;
-    
+    margin-bottom: 200px;
     margin : 25px auto;
     background-color: black;
     height: 75px;
