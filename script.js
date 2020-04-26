@@ -26,7 +26,7 @@ function startQuiz() {
     renderCounter();
     timer = setInterval(renderCounter, 1000);
     document.getElementById("welcome").hidden = true;
-    // document.getElementById("highscore-container").hidden = true;
+    document.getElementById("highscore-container").hidden = true;
 
 }
 
@@ -45,7 +45,7 @@ function checkAnswer(answer) {
         scoreRender();
     } if (count <= 0) {
         window.clearInterval(timer);
-        alert("Times Up!")
+        alert("Game Over! Let's see your Score!")
         scoreRender();
     }
 
@@ -181,7 +181,7 @@ function scoreRender() {
 
     // scoreDiv.innerHTML = "<img src=" + img + ">";
     scoreDiv.innerHTML += "<p>" + "Score: " + score + "</p>";
-    scoreDiv.innerHTML += "<p>" + "Enter your initials into the field above to be listed on the leaderboard!" + "</p>"
+    scoreDiv.innerHTML += "<p>" + "Enter your initials into the field above and press ENTER to be listed on the leaderboard!" + "</p>"
     count = 0;
     clearInterval(timer);
     console.log(score)
@@ -217,9 +217,12 @@ function viewHighScores() {
     clearInterval(leaderboard);
 }
 
-submit.addEventListener("click", function (event) {
-    event.preventDefault();
+// submit.addEventListener("click", function (event) {
+//     event.preventDefault();
 
+
+
+function initials() {
     var initials = document.querySelector("initials").value;
     if (initials === "") {
         displayMessage("error", "Initials cannot be blank");
@@ -232,4 +235,4 @@ submit.addEventListener("click", function (event) {
 
     }
 
-})
+}
